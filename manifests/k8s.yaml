@@ -24,6 +24,14 @@ spec:
               value: okteto
             - name: POSTGRESQL_DATABASE
               value: okteto
+            - name: K8S_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: K8S_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
           readinessProbe:
             periodSeconds: 1
             httpGet:
