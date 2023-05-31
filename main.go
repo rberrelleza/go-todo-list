@@ -26,8 +26,14 @@ type Todo struct {
 	ID         string `json:"id"`
 }
 
+type Health struct {
+	Name      string `json:"name"`
+	Namespace string `json:"namespace"`
+}
+
 func healthz(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(http.StatusOK)
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(Health{Name: os.Getenv("K8S_NAME"), Namespace: os.Getenv("K8S_NAMESPACE")})
 }
 
 func createItem(w http.ResponseWriter, r *http.Request) {
