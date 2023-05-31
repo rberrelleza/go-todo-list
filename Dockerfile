@@ -1,5 +1,5 @@
 FROM golang:buster as builder
-
+RUN go install github.com/go-delve/delve/cmd/dlv@latest
 WORKDIR /app
 ADD . .
 RUN go build -o app

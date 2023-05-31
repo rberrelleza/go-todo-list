@@ -72,7 +72,7 @@ function renderTodoList() {
   }
 }
 
-function removeItem() {
+function removeItemInHTML() {
   var item = this.parentNode.parentNode;
   var parent = item.parentNode;
   var id = parent.id;
@@ -87,15 +87,19 @@ function removeItem() {
   removeItemInBackend(item);
 }
 
-function removeItemInBackend (item) {
+function removeItem (item) {
 	console.log(item.id)
 	$.ajax({
                 url: "/todo/" + item.id,
 		type: 'DELETE',
 		async: false,
 		success: function(data) {
-			console.log(data)
-		}
+			console.log(data);
+      removeItemInHTML();
+		},
+    error: function (request, status, error) {
+      alert("big scary error 😱");
+    }
         });
 }
 

@@ -46,7 +46,7 @@ func createItem(w http.ResponseWriter, r *http.Request) {
 }
 
 func deleteItem(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
+	/*vars := mux.Vars(r)
 	id := vars["id"]
 	if id == "" {
 		w.WriteHeader(http.StatusBadRequest)
@@ -62,7 +62,8 @@ func deleteItem(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
-	log.Info("deleted todo item")
+	log.Info("deleted todo item")*/
+	w.WriteHeader(http.StatusInternalServerError)
 }
 
 func getItems(w http.ResponseWriter, r *http.Request) {
